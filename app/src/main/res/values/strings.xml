@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Security</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="setPattern">设置手势密码</string>
+    <string name="ToConfirmPattern">验证手势密码</string>
+    <string name="Splash">Security</string>
+</resources>

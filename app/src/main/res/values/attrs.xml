@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PatternView">
+        <!-- Defines the aspect to use when drawing PatternView. -->
+        <attr name="pl_aspect">
+            <!-- Square; the default value. -->
+            <enum name="square" value="0" />
+            <enum name="lock_width" value="1" />
+            <enum name="lock_height" value="2" />
+        </attr>
+        <!-- Defines the regular pattern color. -->
+        <attr name="pl_regularColor" format="color|reference" />
+        <!-- Defines the error color. -->
+        <attr name="pl_errorColor" format="color|reference" />
+        <!-- Defines the success color. -->
+        <attr name="pl_successColor" format="color|reference"/>
+    </declare-styleable>
+
+    <attr name="color_no_finger_inner_circle" format="color" />
+    <attr name="color_no_finger_outer_circle" format="color" />
+    <attr name="color_finger_on" format="color" />
+    <attr name="color_finger_up" format="color" />
+    <attr name="count" format="integer" />
+    <attr name="tryTimes" format="integer" />
+
+    <declare-styleable name="GestureLockViewGroup">
+        <attr name="color_no_finger_inner_circle" />
+        <attr name="color_no_finger_outer_circle" />
+        <attr name="color_finger_on" />
+        <attr name="color_finger_up" />
+        <attr name="count" />
+        <attr name="tryTimes" />
+    </declare-styleable>
+</resources>

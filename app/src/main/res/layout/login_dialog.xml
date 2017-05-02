@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="200dp"
+    android:minWidth="284dp"
+    android:orientation="vertical"
+    android:background="#F4F4F4"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请输入以下账号的登录密码"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="18dp"
+        android:textSize="14sp"
+        android:textColor="#767676"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/moblie_phone"
+        tools:text="186****3186"
+        android:layout_gravity="center_horizontal"
+        android:textSize="14sp"
+        android:textColor="#767676"
+        android:layout_marginTop="5dp"/>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:addStatesFromChildren="true"
+        android:background="@drawable/bg_edittext_selector"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:enabled="true"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:id="@+id/password_edt"
+            android:inputType="textPassword"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="20dp">
+
+
+        <Button
+            android:id="@+id/nagative_btn"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="#c7c2c2"
+            android:text="取消"
+            android:textColor="#13B8D1"
+            android:textSize="17sp" />
+
+
+        <Button
+            android:id="@+id/positive_btn"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="#13B8D1"
+            android:text="确定"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
