@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import com.letian.security.activity.base.ActivityCollector;
 import com.letian.security.utils.SharedPreferencesUtil;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class ToConfirmPatternActivity extends ConfirmPatternActivity {
         if (TextUtils.equals(PatternUtils.patternToSha1String(pattern), patternSha1)) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            finish();
         }
         return TextUtils.equals(PatternUtils.patternToSha1String(pattern), patternSha1);
     }
@@ -42,5 +44,20 @@ public class ToConfirmPatternActivity extends ConfirmPatternActivity {
     @Override
     protected void onForgotPassword() {
         super.onForgotPassword();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+
+    }
+
+    @Override
+    protected void onCancel() {
+        super.onCancel();
+        ActivityCollector.finishAll();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ActivityCollector.finishAll();
     }
 }

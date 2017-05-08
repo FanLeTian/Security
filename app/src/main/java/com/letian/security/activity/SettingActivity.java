@@ -15,5 +15,6 @@ public class SettingActivity extends BackBaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_layout);
+        setTitle("系统设置");
     }
 }

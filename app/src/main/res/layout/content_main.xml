@@ -13,8 +13,81 @@
     tools:context="com.letian.security.activity.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:text="已保护"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:background="#225c02"
+                android:id="@+id/bt_protected"
+
+                />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:text="未保护"
+                android:id="@+id/bt_unprotect"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:background="#fa0a01"
+                />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:text="账户管理"
+                android:id="@+id/bt_account_manager"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:background="#120da3"
+                />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:text="系统设置"
+                android:id="@+id/bt_system_settting"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:background="#e2d516"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
 </RelativeLayout>

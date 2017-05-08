@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.letian.security.R;
+import com.letian.security.activity.base.ActivityCollector;
 import com.letian.security.utils.SharedPreferencesUtil;
 import com.letian.security.utils.ToastUtil;
 
@@ -104,7 +106,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     ToastUtil.showToast(this, "密码不能为空");
                     return;
                 }
-                if (passWord.getText().toString().equals(SharedPreferencesUtil.getPrefString(this, "PASSWORD", ""))) {
+                Log.e("FanLeTian", SharedPreferencesUtil.getPrefString(this, "Login_PASSWORD", ""));
+                if (passWord.getText().toString().equals(SharedPreferencesUtil.getPrefString(this, "Login_PASSWORD", ""))) {
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -113,5 +116,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ActivityCollector.finishAll();
+
     }
 }

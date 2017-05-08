@@ -231,7 +231,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 }
                 SharedPreferencesUtil.setPrefBoolean(this, "ISREGISTER", true);
                 SharedPreferencesUtil.setPrefString(this, "ACCOUNT", phone);
-                SharedPreferencesUtil.setPrefString(this, "PASSWORD", pass1);
+                SharedPreferencesUtil.setPrefString(this, "Login_PASSWORD", pass1);
                 ShowDialog();
                 break;
         }
