@@ -2,6 +2,7 @@ package com.letian.security.activity;
 
 import android.content.Intent;
 
+import com.letian.security.activity.base.ActivityCollector;
 import com.letian.security.utils.SharedPreferencesUtil;
 
 import java.util.List;
@@ -25,5 +26,11 @@ public class ToSetPatternActivity extends SetPatternActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onCanceled() {
+        super.onCanceled();
+        ActivityCollector.finishAll();
     }
 }

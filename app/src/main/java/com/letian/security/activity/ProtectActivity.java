@@ -105,7 +105,12 @@ public class ProtectActivity extends BackBaseActivity {
                         @Override
                         public void execute(Realm realm) {
                             userList.remove(mPostion);
-                            ToastUtil.showToast(ProtectActivity.this, mBaseFile.getFileName() + "去保护成功");
+                        }
+                    });
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtil.showToast(ProtectActivity.this, "去保护成功");
                         }
                     });
                     loadList();

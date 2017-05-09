@@ -23,6 +23,7 @@ import android.widget.Button;
 import com.letian.security.R;
 import com.letian.security.bean.BaseFile;
 import com.letian.security.utils.MyFileUtils;
+import com.letian.security.utils.ToastUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -171,7 +172,9 @@ public class MainActivity extends BaseActivity
                 break;
         }
         Log.e("FanLetian", docPaths.toString());
-        ShowDialog();
+        if (docPaths.size() > 0) {
+            ShowDialog();
+        }
     }
 
     public void savePath(List<String> list) {
@@ -208,6 +211,7 @@ public class MainActivity extends BaseActivity
                 case AlertDialog.BUTTON_POSITIVE:// "确认"按钮退出程序
                     savePath(docPaths);
                     MyFileUtils.protectFileList(docPaths);
+                    ToastUtil.showToast(MainActivity.this, "保护成功");
                     break;
                 case AlertDialog.BUTTON_NEGATIVE:// "取消"第二个按钮取消对话框
                     break;

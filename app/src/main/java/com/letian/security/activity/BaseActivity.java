@@ -51,8 +51,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mHomeWatcher = new HomeWatcher(this);
-        mHomeWatcher.startWatch();
+//        mHomeWatcher = new HomeWatcher(this);
+//        mHomeWatcher.startWatch();
         if (Config.isShow) {
             if (SharedPreferencesUtil.getPrefBoolean(this, "SET_PATTERN", false)) {
                 Intent intent1 = new Intent(this, ToConfirmPatternActivity.class);
@@ -79,7 +79,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ActivityCollector.removeActivity(this);
-        mHomeWatcher.stopWatch();
+//        mHomeWatcher.stopWatch();
     }
 }
 
