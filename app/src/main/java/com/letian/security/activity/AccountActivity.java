@@ -3,6 +3,7 @@ package com.letian.security.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -10,9 +11,15 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.letian.security.R;
+import com.letian.security.activity.base.ActivityCollector;
+import com.letian.security.bean.BaseFile;
+import com.letian.security.utils.MyFileUtils;
 import com.letian.security.utils.SharedPreferencesUtil;
 import com.letian.security.utils.ToastUtil;
 import com.letian.security.view.LoginDialogFragment;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by acer on 2017/5/4.
@@ -30,6 +37,11 @@ public class AccountActivity extends BackBaseActivity implements View.OnClickLis
     private LoginDialogFragment loginDialogFragment;
 
     private String status = "0";
+
+
+    private Realm mRealm;
+    RealmResults<BaseFile> results1;
+
 
 
     @Override
@@ -79,9 +91,22 @@ public class AccountActivity extends BackBaseActivity implements View.OnClickLis
     private void reSetSwingButtonStatus() {
         if (SharedPreferencesUtil.getPrefBoolean(this, "SET_PATTERN", false)) {
             mSwitch.setChecked(true);
+            if (loginDialogFragment != null) {
+                if (loginDialogFragment.isVisible()) {
+                    loginDialogFragment.dismiss();
+
+                }
+            }
             reSetGesturePass.setVisibility(View.VISIBLE);
+
         } else {
             mSwitch.setChecked(false);
+            if (loginDialogFragment != null) {
+                if (loginDialogFragment.isVisible()) {
+                    loginDialogFragment.dismiss();
+
+                }
+            }
             reSetGesturePass.setVisibility(View.GONE);
         }
     }
@@ -130,9 +155,41 @@ public class AccountActivity extends BackBaseActivity implements View.OnClickLis
                 loginDialogFragment.show(getSupportFragmentManager(), "dialog");
                 break;
             case R.id.exit:
+                if (results1 != null) {
+                    for (BaseFile baseFile : results1) {
+                        MyFileUtils.unProtectFile(baseFile.getFilePath(), baseFile.getFileName());
+                    }
+                    final RealmResults<BaseFile> userList = mRealm.where(BaseFile.class).findAll();
+                    for (int i = 0; i < results1.size(); i++) {
+                        //先查找到数据
+                        final int finalI = i;
+                        mRealm.executeTransaction(new Realm.Transaction() {
+                            @Override
+                            public void execute(Realm realm) {
+                                userList.remove(finalI);
+                            }
+                        });
+                    }
+                }
+                ToastUtil.showToast(AccountActivity.this, "退出成功");
+                SharedPreferencesUtil.setPrefString(this, "ACCOUNT", "");
+                SharedPreferencesUtil.setPrefString(this, "Login_PASSWORD", "");
+                SharedPreferencesUtil.setPrefBoolean(this, "ISREGISTER", false);
+                SharedPreferencesUtil.setPrefBoolean(this, "SET_PATTERN", false);
+                SharedPreferencesUtil.setPrefString(this, "PASSWORD", "");
+                ActivityCollector.finishAll();
                 break;
         }
 
+    }
+
+    public RealmResults<BaseFile> loadList() {
+        results1 = mRealm.where(BaseFile.class).findAll();
+        for (BaseFile baseFile : results1) {
+            Log.e("FanLeTian", baseFile.getFileName());
+            Log.e("FanLeTian", baseFile.getFilePath());
+        }
+        return results1;
     }
 
 

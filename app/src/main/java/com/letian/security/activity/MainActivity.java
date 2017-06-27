@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.letian.security.R;
 import com.letian.security.bean.BaseFile;
@@ -46,6 +46,8 @@ public class MainActivity extends BaseActivity
     private Button unProtect;
     private Button accoutMana;
     private Button systemSet;
+    private Button pPicture;
+    private Button unPicture;
 
 
     private static String[] PERMISSIONS_STORAGE = {
@@ -62,18 +64,22 @@ public class MainActivity extends BaseActivity
         unProtect = (Button) findViewById(R.id.bt_unprotect);
         accoutMana = (Button) findViewById(R.id.bt_account_manager);
         systemSet = (Button) findViewById(R.id.bt_system_settting);
+//        pPicture = (Button) findViewById(R.id.bt_picture_protect);
+//        unPicture = (Button) findViewById(R.id.bt_picture_unprotect);
         protect.setOnClickListener(this);
         unProtect.setOnClickListener(this);
         accoutMana.setOnClickListener(this);
         systemSet.setOnClickListener(this);
+//        pPicture.setOnClickListener(this);
+//        unPicture.setOnClickListener(this);
         setSupportActionBar(toolbar);
         ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_STORAGE, 100);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "欢迎来到Security,您可以去使用了。", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, SendDocActivity.class);
+                startActivity(intent);
             }
         });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -173,6 +179,7 @@ public class MainActivity extends BaseActivity
         }
         Log.e("FanLetian", docPaths.toString());
         if (docPaths.size() > 0) {
+            Toast.makeText(this, docPaths.toString(), Toast.LENGTH_SHORT).show();
             ShowDialog();
         }
     }
@@ -198,7 +205,9 @@ public class MainActivity extends BaseActivity
         isExit.setPositiveButton("确定", listener);
         isExit.setNegativeButton("取消", listener);
         //对话框显示
-        isExit.show();
+        AlertDialog dialog = isExit.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 
     /**监听对话框里面的button点击事件*/
@@ -214,6 +223,7 @@ public class MainActivity extends BaseActivity
                     ToastUtil.showToast(MainActivity.this, "保护成功");
                     break;
                 case AlertDialog.BUTTON_NEGATIVE:// "取消"第二个按钮取消对话框
+                    dialog.dismiss();
                     break;
                 default:
                     break;
@@ -242,6 +252,14 @@ public class MainActivity extends BaseActivity
                 Intent intent2 = new Intent(this, SettingActivity.class);
                 startActivity(intent2);
                 break;
+//            case R.id.bt_picture_protect:
+//                break;
+//            case R.id.bt_picture_unprotect:
+//                FilePickerBuilder.getInstance().setMaxCount(10)
+//                        .setSelectedFiles(photoPaths)
+//                        .setActivityTheme(R.style.FilePickerTheme)
+//                        .pickPhoto(this);
+//                break;
         }
     }
 }

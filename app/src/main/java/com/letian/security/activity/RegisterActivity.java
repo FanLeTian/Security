@@ -183,12 +183,12 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             case R.id.watch_password_2:
                 if (isHidden) {
                     //设置EditText文本为可见的
-                    watch.setImageResource(R.drawable.kj);
+                    watch2.setImageResource(R.drawable.kj);
                     rePassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 } else {
                     //设置EditText文本为隐藏的
                     rePassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    watch.setImageResource(R.drawable.bkj);
+                    watch2.setImageResource(R.drawable.bkj);
                 }
                 isHidden = !isHidden;
                 rePassword.postInvalidate();
@@ -200,7 +200,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 }
                 break;
             case R.id.register:
-                SharedPreferencesUtil.setPrefBoolean(this, "ISREGISTER", true);
                 phone = phoneNumber.getText().toString();
                 pass1 = password.getText().toString();
                 pass2 = rePassword.getText().toString();
